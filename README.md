@@ -21,6 +21,10 @@ Para a regra de negócio (Back-End), utilizei as seguintes tecnologias:
   
 A Classe "AppConfig" popula o Banco de Inicial com as Regras de Limite de Crédito iniciais que podem ser parametrizadas de acordo com a necessidade. criando novas ou excluindo.
 
+Fluxo: ao criar uma Pessoa, ele identifica se é PF ou PJ, gera o Score 0-9 Random, salva no banco H2 e publica a pessoa no Topic "gerar-nova-conta"
+O consumidor "CriadorConta" que fica ouvindo o Topic assim que identifica que tem algo, executa o Processo de criação da Conta, Limite de Cheque Especial e Cartão de Credito.   
+
+
 2) cliente-web `(porta 8082)` | tempo de desenvolvimento 4 horas
 
 Para o View (Front-End) foi usado Angular 11
