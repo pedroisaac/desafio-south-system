@@ -6,7 +6,7 @@ Autor: Pedro Isaac
 
 Pra resolver o desafio criei 2 projetos
 
-1) server-spring-boot `(porta 8081)` | tempo de desenvolvimento 6 horas
+1) server-spring-boot `(porta 8080)` | tempo de desenvolvimento 6 horas
 
 Para a regra de negócio (Back-End), utilizei as seguintes tecnologias:
 
