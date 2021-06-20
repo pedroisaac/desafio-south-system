@@ -1,6 +1,7 @@
 package br.com.southsystem.appbank.controller;
 
 import br.com.southsystem.appbank.model.pessoa.Pessoa;
+import br.com.southsystem.appbank.service.conta.ContaService;
 import br.com.southsystem.appbank.service.pessoa.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class PessoaController {
 
 	@Autowired
 	PessoaService pessoaService;
+
+	@Autowired
+	ContaService contaService;
 
 	@GetMapping("/pessoas")
 	public ResponseEntity<List<Pessoa>> getAll(@RequestParam(required = false) String nome) {
@@ -102,6 +106,7 @@ public class PessoaController {
 	@DeleteMapping("/pessoas")
 	public ResponseEntity<HttpStatus> deleteAll() {
 		try {
+			contaService.deleteAll();
 			pessoaService.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
