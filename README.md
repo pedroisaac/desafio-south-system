@@ -24,14 +24,14 @@ A Classe "AppConfig" popula o Banco com as Regras de Limite de Crédito iniciais
 Fluxo: ao criar uma Pessoa, ele identifica se é PF ou PJ, gera o Score 0-9 Random, salva no banco H2 e publica a pessoa no Topic "gerar-nova-conta"
 O consumidor "CriadorConta" que fica ouvindo o Topic assim que identifica que tem algo, executa o Processo de criação da Conta, Limite de Cheque Especial e Cartão de Credito.
 
-## _Executar Spring Boot Application (Back-End)_
+## _Executar Server (Back-End)_
 ```
 mvn spring-boot:run
 ```
 
 2) Cliente-Web `(porta 8082)` | tempo de desenvolvimento 4 horas
 
-## _Executar Spring Boot Application (Back-End)_
+## _Executar Cliente Web (Front-End)_
 ```
 npm install
 ng serve --port 8081
