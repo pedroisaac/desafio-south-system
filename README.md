@@ -34,7 +34,7 @@ mvn spring-boot:run
 ## _Executar Spring Boot Application (Back-End)_
 ```
 npm install
-ng serve --port:8081
+ng serve --port 8081
 ```
 
 Para o View (Front-End) foi usado Angular 11
