@@ -1,15 +1,8 @@
 HELP.md
-Server/target/
-Cliente-Web/node_modules/
-
-!Server/.mvn/wrapper/maven-wrapper.jar
-!Server/**/src/main/**
-!Server/**/src/test/**
-
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-
 
 ### STS ###
 .apt_generated

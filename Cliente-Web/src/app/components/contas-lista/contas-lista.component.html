@@ -1,0 +1,75 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar por nome da Pessoa"
+        [(ngModel)]="nomePessoa"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="buscaByNomePessoa()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Lista de Contas</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item" style="cursor: pointer"
+        *ngFor="let conta of contas; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setContaSelecionada(conta, i)"
+      >
+        {{ conta.agencia }}/{{ conta.numero }} - {{conta.pessoa ? conta.pessoa.nome : "" }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentConta">
+      <h4>Detalhes</h4>
+      <div>
+        <label><strong>Pessoa:</strong></label> {{ currentConta.pessoa ? currentConta.pessoa.nome : "" }}
+      </div>
+      <div>
+        <label><strong>Score:</strong></label> {{ currentConta.pessoa ? currentConta.pessoa.score : "" }}
+      </div>
+      <div>
+        <label><strong>Tipo:</strong></label>
+        {{ currentConta.tipo == "C" ? "Conta Corrente" : "Conta Empresarial" }}
+      </div>
+      <div>
+        <label><strong>Agência:</strong></label> {{ currentConta.agencia }}
+      </div>
+      <div>
+        <label><strong>Número:</strong></label> {{ currentConta.numero }}
+      </div>
+      <div>
+        <label><strong>Cheque Especial:</strong></label>
+        {{ (currentConta.limiteChequeEspecial == null || currentConta.limiteChequeEspecial <= 0) ? "Score muito Baixo" : "R$ " + currentConta.limiteChequeEspecial}}
+      </div>
+      <div>
+        <label><strong>Cartao de Crédito:</strong></label>
+        {{ currentConta.cartaoCredito == null ? "Score muito Baixo" : "R$ " + currentConta.cartaoCredito.valorLimite}}
+        <ul>
+          <li>Número Cartão: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.numero : "" : ""}}</li>
+          <li>CVV: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.cvv : "" : ""}}</li>
+          <li>Vencimento Cartão: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.mesVencimento + "/" + currentConta.cartaoCredito.anoVencimento : "" : ""}}</li>
+          <li>Vencimento Fatura: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.diaVencimentoFatura : "" : ""}}</li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div *ngIf="!currentConta">
+      <br/>
+      <p>Selecione a Conta...</p>
+    </div>
+  </div>
+</div>

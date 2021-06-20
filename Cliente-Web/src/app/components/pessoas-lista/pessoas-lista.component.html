@@ -1,0 +1,86 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar por nome"
+        [(ngModel)]="nome"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="buscaByNome()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Lista de Pessoas</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item" style="cursor: pointer"
+        *ngFor="let pessoa of pessoas; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setPessoaSelecionada(pessoa, i)"
+      >
+        {{ pessoa.nome }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeTodasPessoas()">
+      Remove Todas
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentPessoa">
+      <h4>Detalhes</h4>
+      <div>
+        <label><strong>Tipo:</strong></label>
+        {{ currentPessoa.tipo == "PF" ? "Pessoa Física" : "Pessoa Juídica" }}
+      </div>
+      <div>
+        <label><strong>Nome:</strong></label> {{ currentPessoa.nome }}
+      </div>
+      <div>
+        <label><strong>
+          {{ currentPessoa.tipo == "PF" ? "CPF" : "CNPJ" }}:
+        </strong></label>
+        {{ currentPessoa.tipo == "PF" ? currentPessoa.cpf : currentPessoa.cnpj }}
+      </div>
+      <div>
+        <label><strong>Score:</strong></label>
+        {{ currentPessoa.score }}
+      </div>
+      <div>
+        <label><strong>Conta:</strong></label>
+        <ul>
+          <li>Tipo: {{ currentConta ? currentConta.tipo == "C" ? "Conta Corrente" :"Conta Empresarial" : ""}}</li>
+          <li>Agência: {{ currentConta ? currentConta.agencia : ""}}</li>
+          <li>Número: {{ currentConta ? currentConta.numero : ""}}</li>
+          <li>Limite Cheque Especial: {{ currentConta ? ( currentConta.limiteChequeEspecial && currentConta.limiteChequeEspecial <= 0) ? "Score muito Baixo" : "R$ " + currentConta.limiteChequeEspecial : ""}}</li>
+          <li>Limite Cartão Crédito: {{ currentConta ? currentConta.cartaoCredito ? "R$ " + currentConta.cartaoCredito.valorLimite : "Score muito Baixo" : ""}}
+              <ul>
+                <li>Número Cartão: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.numero : "" : ""}}</li>
+                <li>CVV: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.cvv : "" : ""}}</li>
+                <li>Vencimento Cartão: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.mesVencimento +"/"+ currentConta.cartaoCredito.anoVencimento: "" : ""}}</li>
+                <li>Vencimento Fatura: {{ currentConta ? currentConta.cartaoCredito ? currentConta.cartaoCredito.diaVencimentoFatura : "" : ""}}</li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+
+      <a class="badge badge-warning" routerLink="/pessoas/{{ currentPessoa.id }}">
+        Editar
+      </a>
+    </div>
+
+    <div *ngIf="!currentPessoa">
+      <br/>
+      <p>Selecione uma Pessoa...</p>
+    </div>
+  </div>
+</div>

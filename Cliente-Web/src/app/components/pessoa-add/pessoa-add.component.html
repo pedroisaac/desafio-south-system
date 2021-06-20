@@ -1,0 +1,35 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          required
+          [(ngModel)]="pessoa.nome"
+          name="nome"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="documento">Documento</label>
+        <input
+          class="form-control"
+          id="documento"
+          required
+          [(ngModel)]="pessoa.cpf"
+          name="documento"
+        />
+      </div>
+
+      <button (click)="savePessoa()" class="btn btn-success">Salvar</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Pessoa salva com sucesso!</h4>
+      <button class="btn btn-success" (click)="newPessoa()">Adicionar</button>
+    </div>
+  </div>
+</div>

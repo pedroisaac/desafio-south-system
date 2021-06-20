@@ -6,7 +6,7 @@ Autor: Pedro Isaac
 
 Pra resolver o desafio criei 2 projetos
 
-1) server-spring-boot `(porta 8080)` | tempo de desenvolvimento 6 horas
+1) Server (porta 8080)` | tempo de desenvolvimento 6 horas
 
 Para a regra de negócio (Back-End), utilizei as seguintes tecnologias:
 
@@ -22,10 +22,20 @@ Para a regra de negócio (Back-End), utilizei as seguintes tecnologias:
 A Classe "AppConfig" popula o Banco de Inicial com as Regras de Limite de Crédito iniciais que podem ser parametrizadas de acordo com a necessidade. criando novas ou excluindo.
 
 Fluxo: ao criar uma Pessoa, ele identifica se é PF ou PJ, gera o Score 0-9 Random, salva no banco H2 e publica a pessoa no Topic "gerar-nova-conta"
-O consumidor "CriadorConta" que fica ouvindo o Topic assim que identifica que tem algo, executa o Processo de criação da Conta, Limite de Cheque Especial e Cartão de Credito.   
+O consumidor "CriadorConta" que fica ouvindo o Topic assim que identifica que tem algo, executa o Processo de criação da Conta, Limite de Cheque Especial e Cartão de Credito.
 
+## _Executar Spring Boot Application (Back-End)_
+```
+mvn spring-boot:run
+```
 
-2) cliente-web `(porta 8082)` | tempo de desenvolvimento 4 horas
+2) Cliente-Web `(porta 8082)` | tempo de desenvolvimento 4 horas
+
+## _Executar Spring Boot Application (Back-End)_
+```
+npm install
+ng serve --port:8081
+```
 
 Para o View (Front-End) foi usado Angular 11
 
@@ -36,10 +46,6 @@ Exportei a lista de End-Points direto do Postman "arquivo esta na raiz do projet
 > endpoints-conta-postman.json
 ```
 
-## _Executar Spring Boot Application (Back-End)_
-```
-mvn spring-boot:run
-```
 > [localhost:8080/api](http://localhost:8080/api)
 
 > Add Pessoa Fisica

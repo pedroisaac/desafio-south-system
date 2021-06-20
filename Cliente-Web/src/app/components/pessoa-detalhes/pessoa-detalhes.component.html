@@ -1,0 +1,64 @@
+<div>
+  <div *ngIf="currentPessoa.id" class="edit-form">
+    <h4>Pessoa</h4>
+    <form>
+      <div class="form-group">
+        <label><strong>Tipo:</strong></label>
+        {{ currentPessoa.tipo == "PF" ? "Pessoa Física" : "Pessoa Jurídica" }}
+      </div>
+
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          [(ngModel)]="currentPessoa.nome"
+          name="nome"
+        />
+      </div>
+      <div class="form-group">
+        <label for="cpf">
+          {{ currentPessoa.tipo == "PF" ? "CPF" : "CNPJ" }}
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="cpf"
+          [ngModel]="currentPessoa?.cpf"
+          (ngModelChange)="currentPessoa.cpf?.length && currentPessoa.cpf ? currentPessoa.cnpj=$event : null"
+          name="cpf"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="score">Score</label>
+        <input
+          type="text"
+          class="form-control"
+          id="score"
+          [(ngModel)]="currentPessoa.score"
+          name="score"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deletePessoa()">
+      Excluir
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updatePessoa()"
+    >
+      Atualizar
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentPessoa.id">
+    <br />
+    <p>Pessoa não Encontrada...</p>
+  </div>
+</div>
